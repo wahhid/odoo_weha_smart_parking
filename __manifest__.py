@@ -1,6 +1,6 @@
 {
     'name' : 'Parking Management System',
-    'version' : '12.0.1.0',
+    'version' : '14.0.1.0',
     'author' : 'WEHA',
     'category' : 'Generic Modules/Parking Management System',
     'depends' : ['base','hr', 'product', 'account', 'sale'],
