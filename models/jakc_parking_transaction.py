@@ -234,6 +234,9 @@ class ParkingTransaction(models.Model):
     def trans_close(self):
         super(ParkingTransaction, self).write({'state': 'done'})
 
+    def trans_correction(self):
+        pass 
+    
     def _get_booth_code(self, booth_id):
         booth = self.env['parking.booth'].browse(booth_id)
         if booth:
