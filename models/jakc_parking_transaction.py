@@ -66,6 +66,18 @@ class ParkingTransactionSession(models.Model):
         values.update({'state': 'done'})
         self.write(values)
         
+    def trans_posted(self):
+        pass
+
+    def trans_receipt(self):
+        pass
+
+    def trans_re_open(self):
+        pass
+
+    def trans_correction(self):
+        pass
+
     def _close(self):
         _logger.info("Start Close Parking Transaction Session")        
         domain = [('session_id','=', ids[0]),('state','=', 'validated')]
@@ -221,6 +233,9 @@ class ParkingTransaction(models.Model):
 
     def trans_close(self):
         super(ParkingTransaction, self).write({'state': 'done'})
+
+    def trans_correction(self):
+        pass
 
     def _get_booth_code(self, booth_id):
         booth = self.env['parking.booth'].browse(booth_id)
