@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<odoo>
+    <data>
+        <!-- PARKING/PRODUCT -->
+        <record id="view_parking_product_form_inherit_product_template" model="ir.ui.view">
+            <field name="name">parking.product.product.template.inherit.form</field>
+            <field name="model">product.template</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook[last()]" position="inside">
+                    <page string="Parking">
+                        <group>
+                            <field name="iface_parking_membership"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_parking_product_tree">
+            <field name="name">parking.product.tree</field>
+            <field name="model">product.template</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Product">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="product_template_parking_product_filter" model="ir.ui.view">
+            <field name="name">product.template.parking.customer.select</field>
+            <field name="model">product.template</field>
+            <field name="priority">50</field>
+            <field name="arch" type="xml">
+                <search string="Parking Product">
+                    <filter string="Parking Products" name="parking_products" icon="terp-personal" domain="[('iface_parking_membership','=',True)]" help="Parking Product"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_parking_product">
+            <field name="name">Products</field>
+            <field name="res_model">product.template</field>
+            <field name="search_view_id" ref="product_template_parking_product_filter"/>
+            <field name="context">{"search_default_parking_products": 1, 'iface_parking_membership': True}</field>
+        </record>
+
+    </data>
+</odoo>

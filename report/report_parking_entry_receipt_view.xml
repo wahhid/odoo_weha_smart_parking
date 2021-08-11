@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_parkingentryreceipt_document">
+            <div class="page">
+                <div class="text-center">
+                    <h2>Parking Receipt</h2>
+                </div>
+                <br/>
+                 <div class="row">
+                    <div class="col-xs-4">
+                        <span>Trans #</span>
+                    </div>
+                    <div class="col-xs-8">
+                        <span t-esc="o.trans_id"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <span>Plat Number</span>
+                    </div>
+                    <div class="col-xs-8">
+                        <span t-esc="o.plat_number"/>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-xs-4">
+                        <span>Entry Date</span>
+                    </div>
+                    <div class="col-xs-8">
+                        <span t-esc="o.entry_datetime"/>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div class="row">
+                    <img t-att-src="'/report/barcode/Code128/%s' % barcode" width="200"/>
+                </div>
+            </div>
+        </template>
+
+        <template id="report_parkingentryreceipt">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="jakc_parking.report_parkingentryreceipt_document"/>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<odoo>
+    <data>
+    	<record model="workflow" id="parking_transaction_wkf">
+    		<field name="name">parking.transaction.wkf</field>
+    		<field name="osv">parking.transaction</field>
+    		<field name="on_create">True</field>
+    	</record>
+    	
+    	<record model="workflow.activity" id="act_new">
+		    <field name="wkf_id" ref="parking_transaction_wkf" />
+		    <field name="flow_start">True</field>
+		    <field name="name">new</field>
+		    <field name="kind">function</field>
+		    <field name="action">mymod_new()</field>
+		</record>
+		
+		<record model="workflow.activity" id="act_assigned">
+		    <field name="wkf_id" ref="wkf_mymod" />
+		    <field name="name">assigned</field>
+		    <field name="kind">function</field>
+		    <field name="action">mymod_assigned()</field>
+		</record>
+		
+		<record model="workflow.activity" id="act_negotiation">
+		    <field name="wkf_id" ref="wkf_mymod" />
+		    <field name="name">negotiation</field>
+		    <field name="kind">function</field>
+		    <field name="action">mymod_negotiation()</field>
+		</record>
+		
+		<record model="workflow.activity" id="act_won">
+		    <field name="wkf_id" ref="wkf_mymod" />
+		    <field name="name">won</field>
+		    <field name="kind">function</field>
+		    <field name="action">mymod_won()</field>
+		    <field name="flow_stop">True</field>
+		</record>
+		
+		<record model="workflow.activity" id="act_lost">
+		    <field name="wkf_id" ref="wkf_mymod" />
+		    <field name="name">lost</field>
+		    <field name="kind">function</field>
+		    <field name="action">mymod_lost()</field>
+		    <field name="flow_stop">True</field>
+		</record>
+    	
+</record>
+    </data>
+</odoo>

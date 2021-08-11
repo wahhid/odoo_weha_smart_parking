@@ -1,0 +1,20 @@
+<odoo>
+        <record id="action_report_parking_session_summary" model="ir.actions.act_window">
+            <field name="name">Parking Session Summary</field>
+            <field name="res_model">wizard.parking.session.summary</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_report_parking_session_summary" name="Parking Session Summary" action="action_report_parking_session_summary" parent="base.parking_report_menu" sequence="1"/>
+
+        <record id="action_report_parking_summary_by_date" model="ir.actions.act_window">
+            <field name="name">Parking Summary By Date</field>
+            <field name="res_model">wizard.parking.summary.by.date</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_report_parking_summary_by_date" name="Parking Summary By Date" action="action_report_parking_summary_by_date" parent="base.parking_report_menu" sequence="2"/>
+
+</odoo>

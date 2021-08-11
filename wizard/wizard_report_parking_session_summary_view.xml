@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wizard_parking_session_summary_form" model="ir.ui.view">
+        <field name="name">wizard.parking.session.summary.form</field>
+        <field name="model">wizard.parking.session.summary</field>
+        <field name="arch" type="xml">
+            <form string="Survey Summary">
+                <group>
+                    <field name="user_id"/>
+                    <field name="session_id" domain="[('state','=', 'done')]"/>
+                </group>
+                <footer>
+                    <button name="generate_report" string="Print" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

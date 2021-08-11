@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<odoo>
+    <data>
+        <!-- PARKING/BOOTH -->		
+        <record model="ir.ui.view" id="view_parking_booth_form">
+            <field name="name">parking.booth.form</field>
+            <field name="model">parking.booth</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Booth" version="7.0">
+                    <header>
+ 	               		<button name="trans_close" string="Close" type="object" class="oe_highlight" states="open" confirm="Are you sure to close this booth?"/>
+ 	               		<button name="trans_re_open" string="Re-open" type="object" class="oe_highlight" states="done" confirm="Are you sure to re-open this booth?"/>                                                                       
+                    </header>                                                             
+                	<sheet>
+	                    <group>                            
+	                        <field name="name"/>
+	                        <field name="code"/>
+	                        <field name="booth_type"/>
+	                        <field name="is_manless"/>
+	                        <field name="is_driver"/>
+	                        <field name="is_barcode"/>
+							<field name="is_card"/>
+	                        <field name="manless_port" attrs="{'invisible':[('is_manless','=',False)]}"/>
+	                        <field name="printer_state"/>
+	                        <field name="printer_type"/>
+	                        <field name="printer_port" attrs="{'invisible':[('printer_type','=','network')]}"/>
+	                        <field name="printer_ip" attrs="{'invisible':[('printer_type','=','local')]}"/>
+	                        <field name="printer_ip_port" attrs="{'invisible':[('printer_type','=','local')]}"/>
+	                        <field name="with_sequence"/>
+	                        <field name="sequence_number" attrs="{'invisible':[('with_sequence','=',False)]}"/>
+	                        <field name="sequence_length" attrs="{'invisible':[('with_sequence','=',False)]}"/>    	                                               
+	                        <field name="state"/>    
+	                    </group>	                
+	                    <notebook>
+	                    	<page string="Pricings">
+	                    		<field name="booth_pricing_ids">
+	                    			<tree>
+	                    				<field name="pricing_id"/>
+	                    				<field name="is_default"/>		                    				
+	                    			</tree>
+	                    		</field>
+	                    	</page>
+	                    	<page string="Cameras">
+	                    		<field name="booth_camera_ids">
+	                    			<tree>
+	                    				<field name="camera_type"/>
+	                    				<field name="camera_position"/>	   
+	                    				<field name="camera_device" attrs="{'invisible':[('camera_type','=','network')]}"/>
+	                    				<field name="camera_ip_address" attrs="{'invisible':[('camera_type','=','local')]}"/>
+	                    				<field name="camera_ip_port" attrs="{'invisible':[('camera_type','=','local')]}"/>
+	                    				<field name="camera_state"/>                 						                    			
+	                    			</tree>
+	                    		</field>	                    		
+	                    	</page>	    
+				<page string="Payment Method">
+					<field name="booth_payment_method_ids">
+						<tree>
+							<field name="payment_method_id"/>
+						</tree>
+					</field>
+				</page>                	
+	                    </notebook>		                	
+                	</sheet>  
+                </form>
+            </field>
+        </record>
+		
+        <record model="ir.ui.view" id="view_parking_booth_tree">
+            <field name="name">parking.booth.tree</field>
+            <field name="model">parking.booth</field>			
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+                <tree string="Booth">
+	           		<field name="name"/>
+					<field name="code"/>
+					<field name="booth_type"/>
+					<field name="is_manless"/>
+					<field name="is_driver"/>	                                               
+					<field name="state"/>    
+                </tree>
+            </field>
+        </record>
+        
+        
+        <!-- PARKING/BOOTH PRICING -->		
+        <record model="ir.ui.view" id="view_parking_booth_pricing_form">
+            <field name="name">parking.booth.pricing.form</field>
+            <field name="model">parking.booth.pricing</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Booth Pricing" version="7.0">
+                    <header>
+ 	               		<button name="trans_set_default" string="Set Default" type="object" class="oe_highlight" confirm="Are you sure to set as default pricing?"/>                                                                       
+                    </header>                                         
+                	<sheet>
+	                    <group>                            
+	                        <field name="pricing_id"/>
+	                        <field name="is_default"/>
+	                    </group>	                
+                	</sheet>  
+                </form>
+            </field>
+        </record>
+
+	 	<!-- PARKING/BOOTH CAMERA -->		
+        <record model="ir.ui.view" id="view_parking_booth_camera_form">
+            <field name="name">parking.booth.camera.form</field>
+            <field name="model">parking.booth.camera</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Booth Camera" version="7.0">
+                	<sheet>
+	                    <group>                        	                        
+	                        <field name="camera_type"/>	                        
+	                        <field name="camera_device"/>
+	                        <field name="camera_ip_address"/>
+	                        <field name="camera_ip_port"/>
+	                        <field name="camera_position"/>
+	                        <field name="camera_state"/>    
+	                    </group>	                
+                	</sheet>  
+                </form>
+            </field>
+        </record>
+
+                                                        
+        <!-- PARKING/ACTION -->
+        <!-- BOOTH -->
+		<record model="ir.actions.act_window" id="action_parking_booth">
+            <field name="name">Booth</field>
+            <field name="res_model">parking.booth</field>
+            <field name="view_mode">tree,form</field>
+        </record>		                                                                                                                                                                                                                                                                                        	
+    </data>                
+</odoo>

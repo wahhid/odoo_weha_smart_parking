@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<odoo>
+    <data>
+ 		<!-- PARKING/SEQUENCE -->
+
+        <!-- TRANSACTION ID -->
+        <record id="sequence_parking_transaction" model="ir.sequence">
+            <field name="name">Parking Transaction</field>
+            <field name="code">parking.transaction.sequence</field>			           
+            <field name="padding" eval="5"/>
+        </record>
+       
+        <!-- MEMBERSHIP ID -->
+        <record id="sequence_parking_membership" model="ir.sequence">
+            <field name="name">Parking Membership</field>
+            <field name="code">parking.membership.sequence</field>			           
+            <field name="padding" eval="10"/>
+        </record>
+       
+	</data>
+</odoo>

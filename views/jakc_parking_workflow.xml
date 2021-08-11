@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<odoo>
+    <data>
+        <record id="wkf_parking" model="workflow">
+            <field name="name">parking.transaction.basic</field>
+            <field name="osv">parking.transaction</field>
+            <field name="on_create">True</field>
+        </record>
+        <record id="parking_act_draf" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_parking"/>
+            <field name="flow_start">True</field>
+            <field name="name">draft</field>
+        </record>
+        <record id="parking_act_entry" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_parking"/>
+            <field name="name">entry</field>
+            <field name="kind">function</field>
+            <field name="action">action_entry()</field>
+        </record>
+        <record id="parking_act_exit" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_parking"/>
+            <field name="name">exit</field>
+            <field name="kind">function</field>
+            <field name="action">action_exit()</field>
+        </record>
+        <record id="parking_act_validated" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_parking"/>
+            <field name="name">validated</field>
+            <field name="kind">function</field>
+            <field name="action">action_validated()</field>
+        </record>
+        <record id="parking_act_done" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_parking"/>
+            <field name="flow_stop">True</field>
+            <field name="name">done</field>
+            <field name="kind">function</field>
+            <field name="action">action_done()</field>
+        </record>
+
+        <record id="parking_trans_draft_entry" model="workflow.transition">
+            <field name="wkf_id" ref="wkf_parking"/>
+            <field name="act_from" ref="parking_act_draft"/>
+            <field name="act_to" ref="parking_act_entry"/>
+            <field name="signal">button_entry</field>
+            <field name="condition">True</field>
+        </record>
+        <record id="parking_trans_entry_exit" model="workflow.transition">
+            <field name="wkf_id" ref="wkf_parking"/>
+            <field name="act_from" ref="parking_act_entry"/>
+            <field name="act_to" ref="parking_act_exit"/>
+            <field name="signal">button_exit</field>
+        </record>
+        <record id="parking_trans_exit_validated" model="workflow.transition">
+            <field name="wkf_id" ref="wkf_parking"/>
+            <field name="act_from" ref="parking_act_exit"/>
+            <field name="act_to" ref="parking_act_validated"/>
+            <field name="signal">button_validated</field>
+        </record>
+        <record id="parking_trans_validated_done" model="workflow.transition">
+            <field name="wkf_id" ref="wkf_parking"/>
+            <field name="act_from" ref="parking_act_validated"/>
+            <field name="act_to" ref="parking_act_done"/>
+            <field name="signal">button_done</field>
+        </record>
+    </data>
+</odoo>

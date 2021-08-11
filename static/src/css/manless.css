@@ -1,0 +1,28 @@
+#videoElement {
+    width: 400px;
+    height: 280px;
+    background-color: #666;
+}
+
+#canvas {
+    width: 400px;
+    height: 280px;
+    background-color: #666;
+}
+
+input[type=text] {
+  border: none;        /* Remove default borders */
+  padding: 4px 8px;
+  border-radius: 12px; /* Sadly outline does not round! therefore...*/
+}
+input[type=text]:focus{
+  outline: none;      /* Remove default outline and use border or box-shadow */
+  box-shadow: 0 0 0 2px #cc33ff; /* Full freedom. (works also with border-radius) */
+}
+
+textarea {
+  padding: 4px 8px;
+  border-radius: 12px; /* Sadly outline does not round! therefore...*/
+  outline: none;      /* Remove default outline and use border or box-shadow */
+  box-shadow: 0 0 0 2px #cc33ff; /* Full freedom. (works also with border-radius) */
+}

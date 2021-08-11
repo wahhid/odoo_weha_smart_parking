@@ -1,0 +1,95 @@
+<odoo>
+    <report id="parking_session_summary_report"
+            string="Parking Session Summary"
+            model="report.jakc_parking.report_parkingsessionsummary"
+            report_type="qweb-pdf"
+            name="jakc_parking.report_parkingsessionsummary"
+            file="jakc_parking.report_parkingsessionsummary"
+            menu="False"
+     />
+
+    <record id="paperformat_parking_session_summary" model="report.paperformat">
+            <field name="name">Parking Session Summary</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">15</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+    </record>
+
+    <!--
+    <record id="jakc_parking.parking_session_summary_report" model="ir.actions.report.xml">
+        <field name="paperformat_id" ref="jakc_parking.paperformat_parking_session_summary"/>
+    </record>
+    -->
+
+    <report id="parking_summary_by_date_report"
+            string="Parking Summary By Date"
+            model="report.jakc_parking.report_parkingsummarybydate"
+            report_type="qweb-pdf"
+            name="jakc_parking.report_parkingsummarybydate"
+            file="jakc_parking.report_parkingsummarybydate"
+            menu="False"
+     />
+
+    <record id="paperformat_parking_summary_by_date" model="report.paperformat">
+            <field name="name">Parking Summary By Date</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">15</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+    </record>
+ 
+    <!--
+    <record id="jakc_parking.parking_summary_by_date_report" model="ir.actions.report.xml">
+        <field name="paperformat_id" ref="jakc_parking.paperformat_parking_summary_by_date"/>
+    </record>
+    -->
+
+    <report id="parking_entry_receipt"
+            string="Parking Entry Receipt"
+            model="parking.transaction"
+            report_type="qweb-pdf"
+            name="jakc_parking.report_parkingentryreceipt"
+            file="jakc_parking.report_parkingentryreceipt"
+            menu="True"
+     />
+
+    <record id="paperformat_parkinge_entry_receipt" model="report.paperformat">
+            <field name="name">Parking Entry Receipt</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">90</field>
+            <field name="page_width">70</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+    </record>
+
+    <!--
+    <record id="jakc_parking.parking_entry_receipt" model="ir.actions.report.xml">
+        <field name="paperformat_id" ref="jakc_parking.paperformat_parkinge_entry_receipt"/>
+    </record>
+    -->
+
+</odoo>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<odoo>
+    <data>
+        
+		<record model="ir.ui.view" id="view_parking_pricing_form">
+            <field name="name">parking.pricing.form</field>
+            <field name="model">parking.pricing</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group string="General Informaton">
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="vehicle_type_id"/>
+                        </group>
+                        <group string="Fee Mechanism">
+                            <field name="init_duration"/>
+                            <field name="first_hour_charge"/>
+                            <field name="second_hour_charge"/>
+                            <field name="third_hour_charge"/>
+                            <field name="next_hour_charge"/>
+                            <field name="pinalty_charge"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+
+        </record>
+
+        <record model="ir.ui.view" id="view_parking_pricing_tree">
+            <field name="name">parking.pricing.tree</field>
+            <field name="model">parking.pricing</field>			
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+                <tree string="Booth">
+                	<field name="name"/>
+                	<field name="code"/>
+					<field name="vehicle_type_id"/>
+					<field name="init_duration"/>
+					<field name="first_hour_charge"/>
+					<field name="second_hour_charge"/>
+					<field name="third_hour_charge"/>
+					<field name="next_hour_charge"/>
+					<field name="pinalty_charge"/>	                        
+					<field name="state"/>    
+                </tree>
+            </field>
+        </record>
+
+                                                        
+        <!-- PARKING/ACTION -->
+        <!-- PRICING -->
+		<record model="ir.actions.act_window" id="action_parking_pricing">
+            <field name="name">Pricing</field>
+            <field name="res_model">parking.pricing</field>
+            <field name="view_mode">tree,form</field>
+        </record>		                                                                                                                                                                                                                                                                                        	
+    </data>                
+</odoo>

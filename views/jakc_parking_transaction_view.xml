@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<odoo>
+    <data>
+    	<!-- PARKING/TRANSACTION SESSION -->		
+        <record model="ir.ui.view" id="view_parking_transaction_session_form">
+            <field name="name">parking.transaction.session.form</field>
+            <field name="model">parking.transaction.session</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Transaction Session">
+                    <header>
+                        <button name="trans_close" string="Close" type="object" states="open" class="oe_highlight" confirm="Are you sure to close this transaction?"/>
+                        <button name="trans_posted" string="Posted" type="object" states="done" class="oe_highlight"/>
+                        <button name="trans_receipt" string="Print Receipt" type="object" class="oe_highlight" states="done,post"/>                        
+                        <button name="trans_re_open" string="Re-open" type="object" class="oe_highlight" states="done" confirm="Are you sure to re-open this transaction?"/>
+                        <button name="trans_correction" string="Correction" type="object" class="oe_highlight" states="open"/>
+                    </header>                     
+                	<sheet>
+	                    <group>
+	                        <field name="name"/>
+	                        <field name="session_date"/>	                        
+	                        <field name="shift_id"/>
+	                        <field name="booth_id"/>
+	                        <field name="operator_id"/>
+	                        <field name="total_trans"/>	            
+	                        <field name="total_amount"/>
+	                        <field name="total_correction"/>
+	                        <field name="total_pinalty"/>	            	            	                        
+	                        <field name="state"/>               
+	                    </group>	                    	                		                
+                	</sheet>  
+					<div class="oe_chatter">
+            			<field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+            			<field name="message_ids" widget="mail_thread"/>
+        			</div>                	
+                </form>
+            </field>
+        </record>
+		
+        <record model="ir.ui.view" id="view_parking_transaction_session_tree">
+            <field name="name">parking.transaction.session_tree</field>
+            <field name="model">parking.transaction.session</field>			
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+                <tree string="Transaction Session">
+			<field name="name"/>
+			<field name="session_date"/>	                        
+			<field name="shift_id"/>
+			<field name="booth_id"/>
+			<field name="operator_id"/>					 	                        
+			<field name="state"/>                      	                        	                        	                        	                       
+                </tree>
+            </field>
+        </record>    
+
+		<record model="ir.ui.view" id="view_parking_transaction_session_filter">
+            <field name="name">Transaction Session Search</field>
+            <field name="model">parking.transaction.session</field>
+            <field name="arch" type="xml">
+                <search string="Search Transaction Session">
+                    <field name="session_date"/>
+                	<field name="operator_id"/>
+                    <filter icon="terp-camera_test" string="Close" name="status_close" domain="[('state','=','done')]" help="Close Status" />  
+                    <filter icon="terp-camera_test" string="Open" name="status_open" domain="[('state','=','open')]" help="Open Status" />                                                                                                     	               
+                    <group expand="0" string="Group By...">                        
+                        <filter string="Status" name="status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}" />                        
+                    </group>
+                </search>
+            </field>
+        </record> 
+                
+        <!-- PARKING/TRANSACTION -->		
+        <record model="ir.ui.view" id="view_parking_transaction_form" >
+            <field name="name">parking.transaction.form</field>
+            <field name="model">parking.transaction</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Transaction" version="7.0">
+                    <header>
+                        <button name="trans_correction" string="Correction" type="object" class="oe_highlight" states="entry,exit,done" groups="base.group_parking_admin"/>
+                    </header>                                         
+                	<sheet>
+	                    <group  string="General Information">
+	                        <field name="trans_id"/>
+	                        <field name="barcode"/>
+							<field name="card" groups="jakc_parking.group_parking_admin"/>
+	                        <field name="session_id"/>
+	                        <field name="plat_number"/>
+	                        <field name="card_number"/>
+	                        <field name="sequence_number"/>
+	                        <field name="input_method"/>
+	                        <field name="is_manual"/>
+	                        <field name="total_amount"/>
+				<field name="payment_method_id"/>
+	                        <field name="state"/>               
+	                    </group>
+	                    <group cols="2">
+	                    	<group string="Entry">
+		                    	<field name="entry_datetime"/>
+		                        <field name="entry_member"/>
+		                        <field name="entry_booth_id"/>
+		                        <field name="entry_operator_id"/>
+		                        <field name="entry_driver_id"/>		                        
+		                        <field name="entry_shift_id"/>	                        		                        
+	                    	</group>
+	                    	<group string="Exit">
+		                    	<field name="exit_datetime"/>
+		                        <field name="exit_member"/>
+		                        <field name="exit_booth_id"/>
+		                        <field name="exit_operator_id"/>
+		                        <field name="exit_driver_id"/>
+		                        <field name="exit_shift_id"/>		                    	
+	                    	</group>
+	                    </group>
+	                   	<group cols="2">
+	                   		<group string="Duration">
+	                        <field name="hours"/>
+	                        <field name="minutes"/>
+	                        <field name="seconds"/>
+	                        </group>
+	                        <group string="Pricing">
+		                        <field name="pricing_id"/>	                        		                      		                       
+	                        </group>	                        	                                	                        	                        	                        	                     
+	                    </group>
+	                    <notebook>
+	                    	<page string="Images">
+	                    		<group cols="2">
+	                    			<field name="entry_front_image" widget="image" options='{"size": [200, ]}'/>
+	                    			<field name="exit_front_image" widget="image" options='{"size": [200, ]}'/>	                    		
+	                    		</group>
+	                    	</page>
+	                    	<page string="Chargings">
+	                    		<group>
+	                    			<field name="charging_ids">
+	                    				<tree>
+	                    					<field name="charging_type"/>
+	                    					<field name="total_charging"/>
+	                    				</tree>
+	                    			</field>	                    		
+	                    		</group>
+	                    	</page>
+	                    	<page string="Correction">
+	                    		<group>
+	                    			<field name="correction_ids">
+	                    				<tree>
+	                    					<field name="new_trans_id"/>
+	                    					<field name="remarks"/>
+	                    				</tree>
+	                    			</field>	                    		
+	                    		</group>
+	                    	</page>	                    	
+	                    </notebook>	                		                	
+                	</sheet>  
+                </form>
+            </field>
+        </record>
+
+                		
+        <record model="ir.ui.view" id="view_parking_transaction_tree">
+            <field name="name">parking.transaction.tree</field>
+            <field name="model">parking.transaction</field>			
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+                <tree string="Transaction" create="false">
+	            	<field name="trans_id"/>
+	            	<field name="barcode"/>
+					<field name="plat_number"/>
+	                <field name="is_manual"/>
+	                <field name="entry_datetime"/>
+	                <field name="pricing_id"/>	                
+	                <field name="total_amount"/>
+	                <field name="entry_front_image" widget="image" options='{"size": [200, ]}'/>
+	                <field name="exit_front_image" widget="image" options='{"size": [200, ]}'/>	                
+	                <field name="state"/>                       	                        	                        	                        	                       
+                </tree>
+            </field>
+        </record>
+	
+		<record model="ir.ui.view" id="view_parking_transaction_filter">
+            <field name="name">Transaction Search</field>
+            <field name="model">parking.transaction</field>
+            <field name="arch" type="xml">
+                <search string="Search Transaction">
+                    <field name="plat_number"/>
+                	<field name="trans_id"/>
+                	<field name="barcode"/>                                              				                                                         
+                    <filter icon="terp-camera_test" string="Close" name="status_close" domain="[('state','=','done')]" help="Close Status" />  
+                    <filter icon="terp-camera_test" string="Entry" name="status_entry" domain="[('state','=','entry')]" help="Entry Status" />
+                    <filter icon="terp-camera_test" string="Exit" name="status_exit" domain="[('state','=','exit')]" help="Exit Status" />
+					<filter icon="terp-camera_test" string="Validated" name="status_validated" domain="[('state','=','validated')]" help="Validated Status" />
+                    <group expand="0" string="Group By...">
+						<filter string="Plat Number" name="platnumber" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'plat_number'}"/>
+                        <filter string="Status" name="status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}" />                        
+                    </group>
+                </search>
+            </field>
+        </record> 
+	                                                        
+        <!-- PARKING/ACTION -->
+        <!-- TRANSACTION -->
+		<record model="ir.actions.act_window" id="action_parking_transaction">
+            <field name="name">Transaction</field>
+            <field name="res_model">parking.transaction</field>                       
+            <field name="view_mode">tree,form</field>            			          
+			<field name="context">{'search_default_status_entry':1,'search_default_status_exit':1 ,'search_default_status_validated':1}</field>
+        </record>		                                       
+        
+        <!-- TRANSACTION SESSION-->
+		<record model="ir.actions.act_window" id="action_parking_transaction_session">
+            <field name="name">Transaction Session</field>
+            <field name="res_model">parking.transaction.session</field>
+            <field name="view_mode">tree,form</field>            
+            <field name="context">{'search_default_status_open':1}</field>
+        </record>		                                       
+                                                                                                                                                                                                                                                         	
+    </data>                
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<odoo>
+    <data>
+		<!-- PARKING/OPERATOR -->
+		<record id="view_parking_operator_form_inherit_hr_employee" model="ir.ui.view">
+			<field name="name">parking.operator.form.inherit.hr.employee</field>
+			<field name="model">hr.employee</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="hr.view_employee_form"/>
+			<field name="arch" type="xml">
+				<notebook position="inside">
+					<page string="Parking Information">
+						<group>
+							<field name="is_valet_driver"/>
+						</group>
+					</page>
+				</notebook>
+			</field>
+		</record>
+	</data>
+</odoo>

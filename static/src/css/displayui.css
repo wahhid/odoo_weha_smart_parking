@@ -1,0 +1,27 @@
+body {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background: none;
+}
+
+.full {
+  background: url(/jakc_queue/static/src/images/background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.container {
+	padding-left: 15px;
+	padding-right: 15px;      		      	
+}
+		      	
+.maincounter"{
+	height: 400px;
+}
+		      	
+.colcenter {
+	text-align: center;
+}
+		      	

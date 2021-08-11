@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_parking_membership_payment_invoice_form" model="ir.ui.view">
+            <field name="name">parking.membership.payment.invoice.form</field>
+            <field name="model">parking.membership.payment.invoice</field>
+            <field name="arch" type="xml">
+                <form string="Parking Membership Invoice" version="7.0">
+                    <group>                    	
+                    	<field name="parking_membership_id"/>
+                    	<field name="trans_date"/>	                        
+                        <field name="payment_duration" on_change="onchange_payment_duration(payment_duration)"/>                        
+                        <field name="start_date"/>
+                        <field name="end_date"/>                        
+                    </group>
+                </form>
+            </field>
+        </record>               
+        
+		<record id="action_parking_membership_payment_invoice_view" model="ir.actions.act_window">
+            <field name="name">Payment Membership</field>                       
+            <field name="res_model">parking.membership.payment.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_parking_membership_payment_invoice_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <act_window name="Invoice Membership"
+            res_model="parking.membership.payment.invoice"
+            src_model="parking.membership"
+            multi="True"
+            key2="client_action_multi"
+            view_mode="form"             
+            id="action_parking_membership_payment_invoice_form_view"/>        
+    </data>
+</openerp>

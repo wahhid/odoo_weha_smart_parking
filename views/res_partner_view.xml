@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<odoo>
+    <data>
+        <!-- PARKING/CUSTOMER -->
+        <record id="view_parking_customer_form_inherit_res_partner" model="ir.ui.view">
+            <field name="name">parking.customer.form.inherit.res.partner</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Parking Member">
+                        <group>
+                            <field name="is_parking_member"/>
+                            <field name="parking_membership_ids">
+                                <tree>
+                                    <field name="plat_number"/>
+                                    <field name="product_id"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+				
+        <record model="ir.ui.view" id="view_parking_customer_tree">
+            <field name="name">parking.customer.tree</field>
+            <field name="model">res.partner</field>			
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+                <tree string="Customer">
+                    <field name="name"/>
+                    <field name="car_count"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_res_partner_parking_customer_filter" model="ir.ui.view">
+            <field name="name">res.partner.parking.customer.select</field>
+            <field name="model">res.partner</field>
+            <field name="priority">50</field>
+            <field name="arch" type="xml">
+                <search string="Parking Customer">
+                    <filter string="Parking Customers" name="parking_customers" icon="terp-personal" domain="[('is_parking_member','=',True)]" help="Parking Customer"/>
+                </search>
+            </field>
+        </record>
+        
+ 		<!-- PARKING/MEMBERSHIP -->
+		
+        <record model="ir.ui.view" id="view_parking_membership_form">
+            <field name="name">parking.membership.form</field>
+            <field name="model">parking.membership</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Parking Membership">
+         			<header>
+         				<button name="trans_confirm" String="Confirm" type="object" class="oe_highlight" states="draft"/>         				                                                                       
+                        <button name="print_receipt" String="Print" type="object" class="oe_highlight" states="done"/>                        
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                	<sheet>
+	                    <group>                            
+	                    	<field name="res_partner_id" domain="[('is_parking_member','=', True)]"/>
+	                        <field name="membership_id"/>
+	                        <field name="plat_number"/>
+	                        <field name="card_number"/>
+	                        <field name="product_id"/>
+	                    </group>                		       
+	                    <notebook>
+	                    	<page sting="Payment">	                    		
+	                    		<field name="membership_payment_ids">
+	                    			<tree>
+	                    				<field name="trans_date"/>
+	                    				<field name="start_date"/>
+	                    				<field name="end_date"/>
+	                    				<field name="total_amount"/>
+	                    			</tree>
+	                    		</field>
+	                    	</page>
+	                    </notebook>         	
+                	</sheet> 
+               		<div class="oe_chatter">
+    					<field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+    					<field name="message_ids" widget="mail_thread"/>
+					</div>                	
+                </form>
+            </field>
+        </record>
+  
+        <record model="ir.ui.view" id="view_parking_membership_tree">
+            <field name="name">parking.membership.tree</field>
+            <field name="model">parking.membership</field>			
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+                <tree string="Membership">
+                  	<field name="res_partner_id"/>
+                  	<field name="membership_id"/>                  
+	               	<field name="plat_number"/>
+					<field name="product_id"/>
+					<field name="state"/>	                     		                    
+                </tree>
+            </field>
+        </record>
+        
+        <!-- PARKING/MEMBERSHIP PAYMENT-->
+		
+        <record model="ir.ui.view" id="view_parking_membership_payment_form">
+            <field name="name">parking.membership.payment.form</field>
+            <field name="model">parking.membership.payment</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Membership Payment">
+                	<header>                        
+                        <button name="trans_create_invoice" String="Create Invoice" type="object" class="oe_highlight" />
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                	<sheet>
+	                    <group>                       
+	                        <field name="parking_membership_id"/>     
+	                        <field name="trans_date"/>
+	                        <field name="payment_duration"/>
+	                        <field name="billing_type"/>
+                            <field name="start_date"/>
+	                        <field name="end_date"/>	
+	                        <field name="total_amount"/>
+	                        <field name="invoice_id"/>
+	                    </group>
+                	</sheet> 
+                </form>
+            </field>
+        </record>
+               
+        <record model="ir.ui.view" id="view_parking_membership_payment_tree">
+            <field name="name">parking.membership.payment.tree</field>
+            <field name="model">parking.membership.payment</field>			
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+                <tree string="Membership">
+					<field name="parking_membership_id"/>     
+					<field name="trans_date"/>
+					<field name="payment_duration"/>
+                    <field name="billing_type"/>
+					<field name="start_date"/>	                        
+					<field name="end_date"/>	
+					<field name="total_amount"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>                                                        
+        <!-- PARKING/ACTION -->
+        <!-- CUSTOMER -->
+        
+		<record model="ir.actions.act_window" id="action_parking_customer">
+            <field name="name">Members</field>
+            <field name="res_model">res.partner</field>
+            <field name="search_view_id" ref="view_res_partner_parking_customer_filter"/>
+            <field name="context">{"search_default_parking_customers": 1, 'is_parking_member': True}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_parking_customer_view_tree">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_parking_customer_tree"/>
+            <field name="act_window_id" ref="action_parking_customer"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_parking_customer_view_form">
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="base.view_partner_form"/>
+            <field name="act_window_id" ref="action_parking_customer"/>
+     	</record>
+                    
+		
+		<!-- MEMBERSHIP -->
+		<record model="ir.actions.act_window" id="action_parking_membership">
+            <field name="name">Membership</field>
+            <field name="res_model">parking.membership</field>
+            <field name="view_mode">tree,form</field>
+        </record>		
+
+		<!-- MEMBERSHIP PAYMENT-->
+		<record model="ir.actions.act_window" id="action_parking_membership_payment">
+            <field name="name">Membership Payment</field>
+            <field name="res_model">parking.membership.payment</field>
+            <field name="view_mode">tree,form</field>            
+        </record>		
+                                                                                                                                                                                                                                                                                                        	
+    </data>                
+</odoo>

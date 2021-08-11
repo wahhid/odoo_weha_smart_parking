@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<odoo>
+    <data>
+        <!-- PARKING/VEHICLE TYPE -->
+		
+        <record model="ir.ui.view" id="view_parking_vehicle_type_form">
+            <field name="name">parking.vehicle.type.form</field>
+            <field name="model">parking.vehicle.type</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Vehicle Type" version="7.0">
+                	<sheet>
+	                    <group>                            
+	                        <field name="name"/>                        
+	                        <field name="state"/>    
+	                    </group>	                		                	
+                	</sheet>  
+                </form>
+            </field>
+        </record>
+		
+        <record model="ir.ui.view" id="view_parking_vehicle_type_tree">
+            <field name="name">parking.vehicle.type.tree</field>
+            <field name="model">parking.vehicle.type</field>			
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+                <tree string="Vehicle Type">
+                    <field name="name"/>		 
+                    <field name="state"/>                   
+                </tree>
+            </field>
+        </record>
+
+        <!-- PARKING/PAYMENT METHOD -->
+		
+        <record model="ir.ui.view" id="view_parking_payment_method_form">
+            <field name="name">parking.payment.method.form</field>
+            <field name="model">parking.payment.method</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Payment Method">
+                	<sheet>
+	                    <group>                            
+	                        <field name="name"/>                         
+	                    </group>	                		                	
+                	</sheet>  
+                </form>
+            </field>
+        </record>
+		
+        <record model="ir.ui.view" id="view_parking_payment_method_tree">
+            <field name="name">parking.payment.method.tree</field>
+            <field name="model">parking.payment.method</field>			
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+                <tree string="Payment Method">
+                    <field name="name"/>		               
+                </tree>
+            </field>
+        </record>
+
+        <!-- PARKING/SHIFT -->
+		
+        <record model="ir.ui.view" id="view_park_shift_form">
+            <field name="name">parking.shift.form</field>
+            <field name="model">parking.shift</field>						
+            <field name="type">form</field>						
+            <field name="arch" type="xml">
+                <form string="Shift" version="7.0">
+                	<sheet>
+	                    <group>                            
+	                        <field name="name"/>
+	                        <field name="start_time" widget="float_time"/>
+	                        <field name="end_time" widget="float_time"/>       
+	                        <field name="next_day"/>
+	                        <field name="state"/>                     
+	                    </group>                		                	
+                	</sheet> 
+                </form>
+            </field>
+        </record>
+		
+        <record model="ir.ui.view" id="view_parking_shift_tree">
+            <field name="name">parking.shift.tree</field>
+            <field name="model">parking.shift</field>			
+            <field name="type">tree</field>						
+            <field name="arch" type="xml">
+                <tree string="Shift">
+                    <field name="name"/>
+                    <field name="start_time"/>
+                    <field name="end_time"/>	
+                    <field name="next_day"/>
+                    <field name="state"/>	
+                </tree>
+            </field>
+        </record>
+
+                                                        
+        <!-- PARKING/ACTION -->
+        <!-- VEHICLE TYPE -->
+		<record model="ir.actions.act_window" id="action_parking_vehicle_type">
+            <field name="name">Vehicle Type</field>
+            <field name="res_model">parking.vehicle.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>		
+        <!-- VEHICLE TYPE -->
+		<record model="ir.actions.act_window" id="action_parking_payment_method">
+            <field name="name">Payment Method</field>
+            <field name="res_model">parking.payment.method</field>
+            <field name="view_mode">tree,form</field>
+        </record>		
+        <!-- SHIFT -->
+		<record model="ir.actions.act_window" id="action_parking_shift">
+            <field name="name">Shift</field>
+            <field name="res_model">parking.shift</field>
+            <field name="view_mode">tree,form</field>
+        </record>		
+                                                                                                                                                                                                                                                                                        	
+    </data>                
+</odoo>

@@ -1,0 +1,11 @@
+.headerback {  	
+  	background-image: url('/jakc_queue/static/src/images/header_1200x100.png');
+    height: 100px;
+    width: 1200px; 
+}
+.smallback{	
+  	background-image: url('/jakc_queue/static/src/images/small_display_400x300.png');
+    height: 300px;
+    width: 400px; 
+	
+}

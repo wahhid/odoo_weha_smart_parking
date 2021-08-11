@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_parkingsessionsummary">
+            <t t-call="report.html_container">
+                <t t-call="report.internal_layout">
+                    <div class="page">
+                        <div class="text-center">
+                            <h2>Parking Transaction Per Session Summary</h2>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <span><strong>Session Date</strong></span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span t-esc="session_info['session_date']"/>
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-xs-6">
+                                         <span><strong>Shift</strong></span>
+                                    </div>
+                                    <div class="col-xs-6">
+
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-xs-6">
+                                         <span><strong>Booth</strong></span>
+                                    </div>
+                                    <div class="col-xs-6">
+
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-xs-6">
+                                         <span><strong>Operator</strong></span>
+                                    </div>
+                                    <div class="col-xs-6">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Vehicle Type</th>
+                                        <th>Quantity</th>
+                                        <th>Total Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="sum_total_amount" t-value="0"/>
+                                    <t t-set="sum_casual_charging" t-value="0"/>
+                                    <t t-set="sum_service_charging" t-value="0"/>
+                                    <t t-set="sum_pinalty_charging" t-value="0"/>
+
+                                    <t t-foreach="session_summaries" t-as="line">
+                                        <tr>
+                                            <td><span t-esc="line['pricing_name']"/></td>
+                                            <td><span t-esc="line['quantity']"/></td>
+                                            <td><span t-esc="line['total_amount']"/></td>
+                                            <t t-set="sum_total_amount" t-value="sum_total_amount + line['total_amount']"/>
+                                        </tr>
+                                    </t>
+                                    <tr>
+                                        <td colspan="2"><strong>Total</strong></td>
+                                        <td><strong><span t-esc="sum_total_amount"/></strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <span><![CDATA[&nbsp;]]></span>
+                        </div>
+                        <div class="row">
+                            <span><![CDATA[&nbsp;]]></span>
+                        </div>
+                        <div class="row">
+                            <span><![CDATA[&nbsp;]]></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <span>Operator,</span>
+                                </div>
+                                <div class="row">
+                                    <span><![CDATA[&nbsp;]]></span>
+                                </div>
+                                <div class="row">
+                                     <span><![CDATA[&nbsp;]]></span>
+                                </div>
+                                  <div class="row">
+                                     <span><![CDATA[&nbsp;]]></span>
+                                </div>
+                                  <div class="row">
+                                    <span><![CDATA[&nbsp;]]></span>
+                                </div>
+                                 <div class="row">
+                                    <span>Operatpr</span>
+                                </div>
+                                 <div class="row">
+                                    <span>Date:</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <span>Supervisor,</span>
+                                </div>
+                                <div class="row">
+                                     <span><![CDATA[&nbsp;]]></span>
+                                </div>
+                                <div class="row">
+                                     <span><![CDATA[&nbsp;]]></span>
+                                </div>
+                                  <div class="row">
+                                     <span><![CDATA[&nbsp;]]></span>
+                                </div>
+                                  <div class="row">
+                                    <span><![CDATA[&nbsp;]]></span>
+                                </div>
+                                <div class="row">
+                                    <span>Supervisor</span>
+                                </div>
+                                 <div class="row">
+                                    <span>Date:</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

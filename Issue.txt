@@ -1,0 +1,49 @@
+
+Vehicle Type
+    - Model - Tipe Kendaraan
+    - Create Vehicle -> Done
+    - Edit Vehicle -> Done
+Shift
+    - Model - Pembuatan Shift untuk jadwal operasi karyawan
+    - Create Shift  -> Done
+    - Create Shift with Next Day -> Done
+    - Edit Shift -> Done
+    - Function Get Current Shift -> Done
+    - Function Get Current Shift with Next Day -> Done
+
+Booth
+    - Model - Pembuatan dan Konfigurasi setiap booth
+    - Create Booth (in, out, inout) -> Done
+    - Edit Booth -> Done
+    - Is Manless -> Done
+    - Driver Required -> No
+    - Barcode Required -> Done
+    - Card Required -> No
+    - Printer Setup -> Done
+    - Sequence Enable -> Done
+    - Pricing -> Done
+    - Camare -> Done
+
+Pricing
+    - Model - Pembuatan dan Konfigurasi Pegaturan harga per tipe kendaraan
+    - First Hour, Second Hours, Third Hour and Next Hour -> Done
+    - Grace Periode -> Done
+    - Code -> Done
+
+Product
+    - Model - Pembuatan product untuk membership
+    - Flag For Membership Product -> Done
+
+Session
+    - Model - Pembuatan Session Login dari setiap operator
+    - Automatic Create when user login -> Done
+
+Transaction
+    -
+
+Customer
+    - Creat Cut
+
+Membership
+
+Membership Payment

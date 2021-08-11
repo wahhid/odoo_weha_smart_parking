@@ -1,0 +1,5 @@
+<odoo>
+    <data>
+        <menuitem id="parking_config" name="Parking Management Settings" parent="base.menu_config" sequence="17" action="action_parking_config"/>
+    </data>
+</odoo>
