@@ -5,7 +5,7 @@ import logging
 import werkzeug.wrappers
 
 from odoo import http
-from odoo.addons.weha_parking_mgmt.common import invalid_response, valid_response
+from odoo.addons.weha_smart_parking.common import invalid_response, valid_response
 from odoo.http import request
 from odoo.exceptions import AccessError, AccessDenied
 
