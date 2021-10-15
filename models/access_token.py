@@ -8,7 +8,7 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 _logger = logging.getLogger(__name__)
 
-expires_in = "weha_parking_mgmt.access_token_expires_in"
+expires_in = "weha_smart_parking.access_token_expires_in"
 
 
 def nonce(length=40, prefix="access_token"):
