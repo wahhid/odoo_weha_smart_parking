@@ -94,6 +94,10 @@ class ParkingMembership(models.Model):
                     break
         return status
 
+    def print_receipt(self):
+        pass
+
+    
     membership_id = fields.Char('Membership #', size=10, readonly=True)
     res_partner_id = fields.Many2one('res.partner', 'Customer', required=True)
     plat_number = fields.Char('Plat Number', size=10, required=True)
