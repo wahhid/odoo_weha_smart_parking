@@ -11,7 +11,7 @@ from odoo.exceptions import AccessError, AccessDenied
 
 _logger = logging.getLogger(__name__)
 
-expires_in = "weha_parking_mgmt.access_token_expires_in"
+expires_in = "weha_smart_parking.access_token_expires_in"
 
 
 class AccessToken(http.Controller):

@@ -1,4 +1,4 @@
-from openerp import http
+from odoo import http
 
 import logging
 
