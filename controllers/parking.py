@@ -6,11 +6,11 @@ import json
 from datetime import datetime, date
 import werkzeug.wrappers
 from odoo.exceptions import ValidationError, AccessError
-from odoo.addons.weha_parking_mgmt.common import invalid_response, valid_response
+from odoo.addons.weha_smart_parking.common import invalid_response, valid_response
 
 from odoo import http
 
-from odoo.addons.weha_parking_mgmt.common import (
+from odoo.addons.weha_smart_parking.common import (
     extract_arguments,
     invalid_response,
     valid_response,
