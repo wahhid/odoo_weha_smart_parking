@@ -11,26 +11,30 @@
                     <header>
  	               		<button name="trans_close" string="Close" type="object" class="oe_highlight" states="open" confirm="Are you sure to close this booth?"/>
  	               		<button name="trans_re_open" string="Re-open" type="object" class="oe_highlight" states="done" confirm="Are you sure to re-open this booth?"/>                                                                       
-                    </header>                                                             
+						<field name="state" widget="statusbar"/>
+					</header>                                                             
                 	<sheet>
-	                    <group>                            
-	                        <field name="name"/>
-	                        <field name="code"/>
-	                        <field name="booth_type"/>
-	                        <field name="is_manless"/>
-	                        <field name="is_driver"/>
-	                        <field name="is_barcode"/>
-							<field name="is_card"/>
-	                        <field name="manless_port" attrs="{'invisible':[('is_manless','=',False)]}"/>
-	                        <field name="printer_state"/>
-	                        <field name="printer_type"/>
-	                        <field name="printer_port" attrs="{'invisible':[('printer_type','=','network')]}"/>
-	                        <field name="printer_ip" attrs="{'invisible':[('printer_type','=','local')]}"/>
-	                        <field name="printer_ip_port" attrs="{'invisible':[('printer_type','=','local')]}"/>
-	                        <field name="with_sequence"/>
-	                        <field name="sequence_number" attrs="{'invisible':[('with_sequence','=',False)]}"/>
-	                        <field name="sequence_length" attrs="{'invisible':[('with_sequence','=',False)]}"/>    	                                               
-	                        <field name="state"/>    
+	                    <group>                 
+							<group string="General Information">
+								<field name="name"/>
+								<field name="code"/>
+								<field name="booth_type"/>
+								<field name="is_manless"/>
+								<field name="is_driver"/>
+								<field name="is_barcode"/>
+								<field name="is_card"/>	
+							</group>           
+							<group>
+								<field name="manless_port" attrs="{'invisible':[('is_manless','=',False)]}"/>
+								<field name="printer_state"/>
+								<field name="printer_type"/>
+								<field name="printer_port" attrs="{'invisible':[('printer_type','=','network')]}"/>
+								<field name="printer_ip" attrs="{'invisible':[('printer_type','=','local')]}"/>
+								<field name="printer_ip_port" attrs="{'invisible':[('printer_type','=','local')]}"/>
+								<field name="with_sequence"/>
+								<field name="sequence_number" attrs="{'invisible':[('with_sequence','=',False)]}"/>
+								<field name="sequence_length" attrs="{'invisible':[('with_sequence','=',False)]}"/>    	                                               
+							</group>   
 	                    </group>	                
 	                    <notebook>
 	                    	<page string="Pricings">
