@@ -24,7 +24,7 @@
 								<field name="is_barcode"/>
 								<field name="is_card"/>	
 							</group>           
-							<group>
+							<group string="Hardware Information">
 								<field name="manless_port" attrs="{'invisible':[('is_manless','=',False)]}"/>
 								<field name="printer_state"/>
 								<field name="printer_type"/>
