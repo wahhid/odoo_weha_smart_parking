@@ -90,7 +90,7 @@
 			<field name="name">parking.booth.kanban</field>
 			<field name="model">parking.booth</field>
 			<field name="arch" type="xml">
-				<kanban default_group_by="stage_id" class="o_kanban_small_column o_opportunity_kanban" archivable="false" examples="sh_helpdesk" sample="1">
+				<kanban class="o_kanban_small_column o_opportunity_kanban" archivable="false" examples="sh_helpdesk" sample="1">
 					<field name="name" />
 					<field name="code" />
 					<field name="type" />
