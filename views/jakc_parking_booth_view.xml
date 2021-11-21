@@ -93,7 +93,7 @@
 				<kanban class="o_kanban_small_column o_opportunity_kanban" archivable="false" examples="sh_helpdesk" sample="1">
 					<field name="name" />
 					<field name="code" />
-					<field name="type" />
+					<field name="booth_type" />
 					<field name="color" />
 					<templates>
 						<t t-name="kanban-box">
@@ -110,7 +110,7 @@
 									</div>
 									<div>
 										<strong>
-											<field name="type" />
+											<field name="booth_type" />
 										</strong>
 									</div>
 									<div class="o_kanban_record_bottom">
