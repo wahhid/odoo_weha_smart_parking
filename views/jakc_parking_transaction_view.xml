@@ -261,7 +261,7 @@
 		<record model="ir.actions.act_window" id="action_parking_transaction_session">
             <field name="name">Transaction Session</field>
             <field name="res_model">parking.transaction.session</field>
-            <field name="view_mode">tree,form</field>            
+            <field name="view_mode">kanban,tree,form</field>            
             <field name="context">{'search_default_status_open':1}</field>
         </record>		                                       
                                                                                                                                                                                                                                                          	
