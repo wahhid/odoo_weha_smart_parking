@@ -174,6 +174,7 @@ class ParkingTransactionSession(models.Model):
             self.total_pinalty = 0
 
     name = fields.Char('Name', size=50, required=True, readonly=True)
+    color = fields.Integer(string='Color Index')
     session_date = fields.Date('Session Date', required=True, readonly=True)
     shift_id = fields.Many2one('parking.shift', 'Shift', required=True, readonly=True)
     booth_id = fields.Many2one('parking.booth', 'Booth', required=True, readonly=True)
