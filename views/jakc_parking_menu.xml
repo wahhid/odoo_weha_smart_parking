@@ -1,6 +1,6 @@
 <openerp>
     <data>
-        <menuitem name="Parking" id="parking_main_menu"/>			
+        <menuitem name="Parking" id="parking_main_menu" web_icon="weha_smart_parking,static/description/icon.png"/>			
 		<menuitem name="General" id="base.parking_general_menu" parent="parking_main_menu"/>
 		<menuitem name="Master" id="base.parking_master_menu" parent="parking_main_menu"/>			     		       
         <menuitem name="Transaction" id="base.parking_transaction_menu" parent="parking_main_menu"/>	        
