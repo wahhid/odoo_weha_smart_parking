@@ -14,19 +14,23 @@
                         <button name="trans_receipt" string="Print Receipt" type="object" class="oe_highlight" states="done,post"/>                        
                         <button name="trans_re_open" string="Re-open" type="object" class="oe_highlight" states="done" confirm="Are you sure to re-open this transaction?"/>
                         <button name="trans_correction" string="Correction" type="object" class="oe_highlight" states="open"/>
-                    </header>                     
+						<field name="state" widget="statusbar"/>
+				    </header>                     
                 	<sheet>
 	                    <group>
-	                        <field name="name"/>
-	                        <field name="session_date"/>	                        
-	                        <field name="shift_id"/>
-	                        <field name="booth_id"/>
-	                        <field name="operator_id"/>
-	                        <field name="total_trans"/>	            
-	                        <field name="total_amount"/>
-	                        <field name="total_correction"/>
-	                        <field name="total_pinalty"/>	            	            	                        
-	                        <field name="state"/>               
+							<group string="General Information">
+								<field name="name"/>
+								<field name="session_date"/>	                        
+								<field name="shift_id"/>
+								<field name="booth_id"/>
+								<field name="operator_id"/>
+							</group>
+	                        <group string="Transaction Summary">
+								<field name="total_trans"/>	            
+								<field name="total_amount"/>
+								<field name="total_correction"/>
+								<field name="total_pinalty"/>	  
+							</group>          	            	                                     
 	                    </group>	                    	                		                
                 	</sheet>  
 					<div class="oe_chatter">
