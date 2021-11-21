@@ -71,6 +71,7 @@ class ParkingBooth(models.Model):
         return str(sequence_number).zfill(booth.sequence_length)
 
     name = fields.Char('Name', size=50, required=True)
+    color = fields.Integer(string='Color Index')
     code = fields.Char('Code', size=4, required=True)
     booth_type = fields.Selection(AVAILABLE_BOOTH_TYPES, 'Type', size=16, required=True)
     is_manless = fields.Boolean('Is Manless')

@@ -86,7 +86,46 @@
             </field>
         </record>
         
-        
+        <record model="ir.ui.view" id="view_parking_booth_kanban">
+			<field name="name">parking.booth.kanban</field>
+			<field name="model">parking.booth</field>
+			<field name="arch" type="xml">
+				<kanban default_group_by="stage_id" class="o_kanban_small_column o_opportunity_kanban" archivable="false" examples="sh_helpdesk" sample="1">
+					<field name="name" />
+					<field name="code" />
+					<field name="type" />
+					<field name="color" />
+					<templates>
+						<t t-name="kanban-box">
+							<div t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click">
+								<div class="oe_kanban_content">
+									<div>
+										<strong>
+											<field name="name" />
+										</strong>
+										<strong>
+											:
+											<field name="code" />
+										</strong>
+									</div>
+									<div>
+										<strong>
+											<field name="type" />
+										</strong>
+									</div>
+									<div class="o_kanban_record_bottom">
+										<div class="oe_kanban_bottom_right">
+										</div>
+									</div>
+								</div>
+								<div class="oe_clear" />
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
         <!-- PARKING/BOOTH PRICING -->		
         <record model="ir.ui.view" id="view_parking_booth_pricing_form">
             <field name="name">parking.booth.pricing.form</field>
@@ -134,7 +173,7 @@
 		<record model="ir.actions.act_window" id="action_parking_booth">
             <field name="name">Booth</field>
             <field name="res_model">parking.booth</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">kanban,tree,form</field>
         </record>		                                                                                                                                                                                                                                                                                        	
     </data>                
 </odoo>
