@@ -23,7 +23,8 @@
                 </notebook>
             </field>
         </record>
-				
+
+        <!--				
         <record model="ir.ui.view" id="view_parking_customer_tree">
             <field name="name">parking.customer.tree</field>
             <field name="model">res.partner</field>			
@@ -46,6 +47,7 @@
                 </search>
             </field>
         </record>
+        -->
         
  		<!-- PARKING/MEMBERSHIP -->
 		
@@ -152,12 +154,28 @@
         <!-- PARKING/ACTION -->
         <!-- CUSTOMER -->
         
+        <record id="smart_parking_res_partner_action_customer" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{'search_default_parking_customers': 1, 'is_parking_member': True}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new customer in your address book
+              </p><p>
+                Odoo helps you easily track all activities related to a customer.
+              </p>
+            </field>
+        </record>
+        <!--
 		<record model="ir.actions.act_window" id="action_parking_customer">
             <field name="name">Members</field>
             <field name="res_model">res.partner</field>
             <field name="search_view_id" ref="view_res_partner_parking_customer_filter"/>
             <field name="context">{"search_default_parking_customers": 1, 'is_parking_member': True}</field>
         </record>
+        -->
 
         <record model="ir.actions.act_window.view" id="action_parking_customer_view_tree">
             <field name="sequence" eval="2"/>
