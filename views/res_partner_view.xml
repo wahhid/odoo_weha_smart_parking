@@ -12,7 +12,7 @@
                     <page string="Parking Member">
                         <group>
                             <field name="is_parking_member"/>
-                            <field name="parking_membership_ids" attrs="{'invisible':[('is_parking_member','=',False)] }">
+                            <field name="parking_membership_ids" attrs="{'invisible':[('is_parking_member','=',False)]}">
                                 <tree>
                                     <field name="plat_number"/>
                                     <field name="product_id"/>
