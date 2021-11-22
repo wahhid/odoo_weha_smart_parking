@@ -175,7 +175,7 @@
             <field name="search_view_id" ref="view_res_partner_parking_customer_filter"/>
             <field name="context">{"search_default_parking_customers": 1, 'is_parking_member': True}</field>
         </record>
-        -->
+        
 
         <record model="ir.actions.act_window.view" id="action_parking_customer_view_tree">
             <field name="sequence" eval="2"/>
@@ -190,7 +190,7 @@
             <field name="view_id" ref="base.view_partner_form"/>
             <field name="act_window_id" ref="action_parking_customer"/>
      	</record>
-                    
+        -->
 		
 		<!-- MEMBERSHIP -->
 		<record model="ir.actions.act_window" id="action_parking_membership">
