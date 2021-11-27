@@ -115,6 +115,9 @@ class ParkingMembership(models.Model):
         result.generate_membership_id()
         return result
 
+    _sql_constraints = [
+        ('member_unit', 'UNIQUE (membership_id, plat_number)',  'You can not have two plat number with the same customer !')
+    ]
 
 class ParkingMembershipPayment(models.Model):
     _name = "parking.membership.payment"
