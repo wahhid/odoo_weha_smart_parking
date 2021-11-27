@@ -97,6 +97,11 @@ class ParkingMembership(models.Model):
                     break
         return status
 
+    def get_expire_date(self):
+        for row in self:
+            payments = row.mapped('membership_payment_ids').sorted('end_date',reverse=True)
+            row.expired_date = payments[0].end_date
+
     def print_receipt(self):
         pass
 
@@ -106,6 +111,7 @@ class ParkingMembership(models.Model):
     plat_number = fields.Char('Plat Number', size=10, required=True)
     card_number = fields.Char('Card Number', size=20)
     product_id = fields.Many2one('product.product', 'Product')
+    expire_date = fields.Date('Expired Date', compute='get_expired_date', readonly=True)
     membership_payment_ids = fields.One2many('parking.membership.payment', 'parking_membership_id', 'Payments')
     state = fields.Selection(AVAILABLE_MEMBER_STATE, 'Status', readonly=True, default='draft')
 
