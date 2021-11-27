@@ -34,14 +34,19 @@ def validate_token(func):
         )
 
         if access_token_data.find_one_or_create_token(user_id=access_token_data.user_id.id) != access_token:
-            return invalid_response("access_token", "token seems to have expired or invalid", 401)
+            #data = json.loads(request.httprequest.data) 
+            #_logger.info(request.httprequest.environ)
+            if request.httprequest.environ['CONTENT_TYPE'] == 'application/json':
+                return {"err": True,"message": "Token Invalid", "data":[]}
+            else:
+                return invalid_response("access_token", "token seems to have expired or invalid", 401)
+           
 
         request.session.uid = access_token_data.user_id.id
         request.uid = access_token_data.user_id.id
         return func(self, *args, **kwargs)
 
     return wrap
-
 
 class ParkingController(http.Controller):
     
