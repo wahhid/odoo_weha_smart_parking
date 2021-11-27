@@ -145,14 +145,15 @@ class ParkingMembershipPayment(models.Model):
             self.total_amount = self.parking_membership_id.product_id.list_price * self.payment_duration
 
     def get_state(self):
-        str_now = date.today()
-        if self.end_date > str_now:
-            if self.invoice_id:
-                self.state = self.invoice_id.state
+        for row in self:
+            str_now = date.today()
+            if row.end_date > str_now:
+                if row.invoice_id:
+                    row.state = row.invoice_id.state
+                else:
+                    row.state = 'draft'
             else:
-                self.state = 'draft'
-        else:
-            self. state = 'done'
+                row.state = 'done'
 
     parking_membership_id = fields.Many2one('parking.membership', 'Parking Membership', required=True)
     trans_date = fields.Date('Transaction Date', readonly=True, default=date.today())
