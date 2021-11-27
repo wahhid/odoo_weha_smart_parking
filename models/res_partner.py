@@ -119,9 +119,9 @@ class ParkingMembershipPayment(models.Model):
 
     def _prepare_invoice_values(self):
         invoice_vals = {
-            'ref': self.parking_membership_id.name,
+            'ref': self.parking_membership_id.plat_number,
             'move_type': 'out_invoice',
-            'invoice_origin': f'Payment for {self.parking_membership_id.name} ({self.start_date} - {self.end_date})',
+            'invoice_origin': f'Payment for {self.parking_membership_id.plat_number} ({self.start_date} - {self.end_date})',
             'invoice_user_id': self.env.user.id,
             'partner_id': self.parking_membership_id.res_partner_id.id
         }
