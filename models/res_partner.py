@@ -226,7 +226,8 @@ class ParkingMembershipPayment(models.Model):
                 return self._create_invoice(values)
 
         if 'payment_duration' in values.keys():
-            end_date = datetime.strptime(self.start_date,'%Y-%m-%d') + relativedelta(months=values.get('payment_duration'))
+            #end_date = datetime.strptime(self.start_date,'%Y-%m-%d') + relativedelta(months=values.get('payment_duration'))
+            end_date = self.start_date + relativedelta(months=values.get('payment_duration'))
             values.update({'end_date': end_date})
             values.update({'total_amount': trans.parking_membership_id.product_id.list_price * values.get('payment_duration')})
         return super(ParkingMembershipPayment, self).write(values)
