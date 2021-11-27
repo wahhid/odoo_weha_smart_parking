@@ -112,13 +112,12 @@ class ParkingController(http.Controller):
         }
         return valid_response(response_data)
 
-
     @validate_token
     @http.route("/api/v1/parking/entry", type="http", auth="none", methods=["POST"], csrf=False)
     def parking_entry(self, **post):
         
         entry_booth_id = int(post['entry_booth_id']) or False if 'entry_booth_id' in post else False
-        input_method =  post['input_method'] or False if 'input_method' in post else False
+        input_method =  post['input_method'] or False if 'input_method' in post else False #
         entry_operator_id = int(post['entry_operator_id']) or False if 'entry_operator_id' in post else False
         is_member = int(post['is_member']) or False if 'is_member' in post else False
         _logger.info(type(is_member))
@@ -355,10 +354,10 @@ class ParkingController(http.Controller):
         return valid_response(data)
 
     @validate_token
-    @http.route("/api/v1/parking/checkbarcode/<trans_id>", type="http", auth="none", methods=["GET"], csrf=False)
-    def parking_check_barcode(self, trans_id):
+    @http.route("/api/v1/parking/checkbarcode/<barcode>", type="http", auth="none", methods=["GET"], csrf=False)
+    def parking_check_barcode(self, barcode):
         domain  = [
-            ('trans_id','=', trans_id),
+            ('barcode','=', barcode),
             ('state','=', 'entry')
         ]
         parking_transaction_id = http.request.env['parking.transaction'].search(domain)
