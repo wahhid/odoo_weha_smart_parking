@@ -15,7 +15,9 @@ AVAILABLE_STATES = [
     ('draft','New'),                
     ('open','Open'),    
     ('done','Closed'),
+    ('posted','Posted'),
 ]
+
 
 AVAILABLE_MEMBER_STATE = [
     ('draft', 'New'),
