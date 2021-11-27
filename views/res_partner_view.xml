@@ -115,7 +115,7 @@
             <field name="arch" type="xml">
                 <form string="Membership Payment">
                 	<header>                        
-                        <button name="trans_create_invoice" String="Create Invoice" type="object" class="oe_highlight" />
+                        <button name="trans_create_invoice" string="Create Invoice" type="object" class="oe_highlight" />
                         <field name="state" widget="statusbar"/>
                     </header>
                 	<sheet>
