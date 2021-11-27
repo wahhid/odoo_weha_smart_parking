@@ -159,7 +159,7 @@ class ParkingController(http.Controller):
                     "data": [ 
                         {
                             'name': parking_transaction_id.barcode,
-                            'entry_datetime': parking_transaction_id.entry_datetime.strftime('%Y-%m-%d %H:%M:%D'),
+                            'entry_datetime': parking_transaction_id.entry_datetime.strftime('%Y-%m-%d %H:%M:%S'),
                             'entry_booth_id': parking_transaction_id.entry_booth_id.name,
                             'entry_operator_id': parking_transaction_id.entry_operator_id.name
                         }
