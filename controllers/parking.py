@@ -9,6 +9,7 @@ from odoo.exceptions import ValidationError, AccessError
 from odoo.addons.weha_smart_parking.common import invalid_response, valid_response
 
 from odoo import http
+from odoo.http import request
 
 from odoo.addons.weha_smart_parking.common import (
     extract_arguments,
@@ -16,8 +17,6 @@ from odoo.addons.weha_smart_parking.common import (
     valid_response,
 )
 
-
-from odoo.http import request
 
 _logger = logging.getLogger(__name__)
 
@@ -46,8 +45,6 @@ def validate_token(func):
 
 class ParkingController(http.Controller):
     
-
-
     @validate_token
     @http.route("/api/v1/parking/checkmember/<member_id>", type="http", auth="none", methods=["GET"], csrf=False)
     def parking_checkmember(self, member_id):

@@ -74,22 +74,37 @@ class ParkingBooth(models.Model):
     color = fields.Integer(string='Color Index')
     code = fields.Char('Code', size=4, required=True)
     booth_type = fields.Selection(AVAILABLE_BOOTH_TYPES, 'Type', size=16, required=True)
-    is_manless = fields.Boolean('Is Manless')
+    
+    #Valet
     is_driver = fields.Boolean('Driver Required')
+    
+    #Future Usage
     is_barcode = fields.Boolean('Barcode Required')
+    
+    #Wallet or Member
     is_card = fields.Boolean('Card Required')
+
+    #Manless
+    is_manless = fields.Boolean('Is Manless')
     manless_port = fields.Char('Manless Port', size=50, _default='/dev/ttyUSB0')
+    manless_user_id = fields.Many2one('res.users', 'Manless User')
+    
+    #Printer
     printer_state = fields.Selection(AVAILABLE_PRINTER_STATES, 'Printer Status', size=16, default='disable')
     printer_type = fields.Selection(AVAILABLE_PRINTER_TYPES, 'Printer Type', size=16, default='local')
     printer_port = fields.Char('Printer Port', size=50, default='/dev/ttyS0')
     printer_ip = fields.Char('Printer Ip Address', size=50)
     printer_ip_port = fields.Char('Printer Ip Port', size=50)
+
     booth_pricing_ids = fields.One2many('parking.booth.pricing', 'booth_id', 'Pricings')
     booth_camera_ids = fields.One2many('parking.booth.camera', 'booth_id', 'Cameras')
     booth_payment_method_ids = fields.One2many('parking.booth.payment.method', 'booth_id', 'Payment Methods')
+    
+    #Manage Booth Sequence
     with_sequence = fields.Boolean('Sequence Enable')
     sequence_number = fields.Integer('Sequence #', default=0)
     sequence_length = fields.Integer('Sequence Length', default=5)
+    
     state = fields.Selection(AVAILABLE_STATES, 'Status', size=16, default='open', readonly=True)
 
     def write(self, values):

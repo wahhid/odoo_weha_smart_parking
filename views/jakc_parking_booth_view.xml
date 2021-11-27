@@ -25,7 +25,7 @@
 								<field name="is_card"/>	
 							</group>           
 							<group string="Hardware Information">
-								<field name="manless_port" attrs="{'invisible':[('is_manless','=',False)]}"/>
+								<field name="manless_port" attrs="{'invisible':[('is_manless','=',False)], 'required':[('is_manless','=',True)]}"/>
 								<field name="printer_state"/>
 								<field name="printer_type"/>
 								<field name="printer_port" attrs="{'invisible':[('printer_type','=','network')]}"/>
