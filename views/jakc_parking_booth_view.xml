@@ -152,13 +152,13 @@
             <field name="model">parking.booth.camera</field>						
             <field name="type">form</field>						
             <field name="arch" type="xml">
-                <form string="Booth Camera" version="7.0">
+                <form string="Booth Camera">
                 	<sheet>
 	                    <group>                        	                        
 	                        <field name="camera_type"/>	                        
-	                        <field name="camera_device"/>
-	                        <field name="camera_ip_address"/>
-	                        <field name="camera_ip_port"/>
+	                        <field name="camera_device" attrs="{'invisible':[('camera_type','=','network')],'required':[('camera_type','=','local')]}"/>
+	                        <field name="camera_ip_address"  attrs="{'invisible':[('camera_type','=','local')],'required':[('camera_type','=','network')]}"/>
+	                        <field name="camera_ip_port" attrs="{'invisible':[('camera_type','=','local')],'required':[('camera_type','=','network')]}"/>
 	                        <field name="camera_position"/>
 	                        <field name="camera_state"/>    
 	                    </group>	                
