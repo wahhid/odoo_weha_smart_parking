@@ -173,7 +173,7 @@ class ParkingBoothCamera(models.Model):
     camera_device = fields.Char('Camera Device', size=50, default='/dev/video0')
     camera_ip_address = fields.Char('Camera Ip Address', size=50)
     camera_ip_port = fields.Char('Camera Ip Port', size=10)
-    state = fields.Selection(AVAILABLE_CAMERA_STATES, 'Status', size=16, default='draft')
+    #state = fields.Selection(AVAILABLE_CAMERA_STATES, 'Status', size=16, default='draft')
 
 
 class ParkingBoothPaymentMethod(models.Model):
