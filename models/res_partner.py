@@ -178,7 +178,7 @@ class ParkingMembershipPayment(models.Model):
     start_date = fields.Date('Start Date', required=True, default=date.today())
     end_date = fields.Date('End Date', readonly=True, default=date.today() + relativedelta(months=1))
     total_amount = fields.Float('Total Payment', readonly=True)
-    invoice_id = fields.Many2one('account.invoice', 'Invoice', readonly=True)
+    invoice_id = fields.Many2one('account.move', 'Invoice', readonly=True)
     state = fields.Selection(AVAILABLE_MEMBER_STATE, 'State', compute='get_state', readonly=True)
 
 
