@@ -117,27 +117,41 @@ class ParkingMembershipPayment(models.Model):
     _name = "parking.membership.payment"
     _rec_name = 'parking_membership_id'
 
-    def trans_create_invoice(self):
-        partner_id = self.parking_membership_id.res_partner_id
-        invoice = self.env['account.invoice'].create({
-            'partner_id': partner_id.id,
-            'account_id': partner_id.property_account_receivable_id.id,
-            'fiscal_position_id': partner_id.property_account_position_id.id,
-            'comment': 'Payment Non Billing for ' + self.start_date.strftime('%d/%m/%Y') + ' to ' + self.end_date.strftime('%d/%m/%Y')
-        })
-        line_values = {
-            'product_id': self.parking_membership_id.product_id.id,
-            'price_unit': self.total_amount,
-            'invoice_id': invoice.id,
+    def _prepare_invoice_values(self):
+        invoice_vals = {
+            'ref': self.parking_membership_id.name,
+            'move_type': 'out_invoice',
+            'invoice_origin': f'Payment for {self.parking_membership_id.name} ({self.start_date} - {self.end_date})',
+            'invoice_user_id': self.env.user.id,
+            'partner_id': self.parking_membership_id.res_partner_id.id
         }
-        # create a record in cache, apply onchange then revert back to a dictionnary
-        invoice_line = self.env['account.invoice.line'].new(line_values)
-        invoice_line._onchange_product_id()
-        line_values = invoice_line._convert_to_write({name: invoice_line[name] for name in invoice_line._cache})
-        line_values['price_unit'] = self.total_amount
-        invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
-        invoice.compute_taxes()
-        self.invoice_id = invoice.id
+
+        return invoice_vals
+
+    def trans_create_invoice(self):
+        invoice_vals = self._prepare_invoice_values()
+        invoice_id = self.env['account.move'].sudo().create(invoice_vals).with_user(self.env.uid)
+
+        # partner_id = self.parking_membership_id.res_partner_id
+        # invoice = self.env['account.invoice'].create({
+        #     'partner_id': partner_id.id,
+        #     'account_id': partner_id.property_account_receivable_id.id,
+        #     'fiscal_position_id': partner_id.property_account_position_id.id,
+        #     'comment': 'Payment Non Billing for ' + self.start_date.strftime('%d/%m/%Y') + ' to ' + self.end_date.strftime('%d/%m/%Y')
+        # })
+        # line_values = {
+        #     'product_id': self.parking_membership_id.product_id.id,
+        #     'price_unit': self.total_amount,
+        #     'invoice_id': invoice.id,
+        # }
+        # # create a record in cache, apply onchange then revert back to a dictionnary
+        # invoice_line = self.env['account.invoice.line'].new(line_values)
+        # invoice_line._onchange_product_id()
+        # line_values = invoice_line._convert_to_write({name: invoice_line[name] for name in invoice_line._cache})
+        # line_values['price_unit'] = self.total_amount
+        # invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
+        # invoice.compute_taxes()
+        self.invoice_id = invoice_id.id
 
     @api.onchange('payment_duration', 'start_date')
     def onchange_payment_duration(self):
@@ -155,6 +169,7 @@ class ParkingMembershipPayment(models.Model):
                     row.state = 'draft'
             else:
                 row.state = 'done'
+
 
     parking_membership_id = fields.Many2one('parking.membership', 'Parking Membership', required=True)
     trans_date = fields.Date('Transaction Date', readonly=True, default=date.today())
