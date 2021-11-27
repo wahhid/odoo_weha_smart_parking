@@ -58,8 +58,8 @@
             <field name="arch" type="xml">
                 <form string="Parking Membership">
          			<header>
-         				<button name="trans_confirm" String="Confirm" type="object" class="oe_highlight" states="draft"/>         				                                                                       
-                        <button name="print_receipt" String="Print" type="object" class="oe_highlight" states="done"/>                        
+         				<button name="trans_confirm" string="Confirm" type="object" class="oe_highlight" states="draft"/>         				                                                                       
+                        <button name="print_receipt" string="Print" type="object" class="oe_highlight" states="done"/>                        
                         <field name="state" widget="statusbar"/>
                     </header>
                 	<sheet>
