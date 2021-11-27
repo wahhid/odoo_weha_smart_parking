@@ -69,6 +69,7 @@
 	                        <field name="plat_number"/>
 	                        <field name="card_number"/>
 	                        <field name="product_id"/>
+                            <field name="expire_date"/>
 	                    </group>                		       
 	                    <notebook>
 	                    	<page sting="Payment">	                    		
