@@ -128,6 +128,7 @@
 	                        <field name="end_date"/>	
 	                        <field name="total_amount"/>
 	                        <field name="invoice_id"/>
+                            <field name="payment_state"/>
 	                    </group>
                 	</sheet> 
                 </form>
