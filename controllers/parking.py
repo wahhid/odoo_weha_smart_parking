@@ -159,7 +159,7 @@ class ParkingController(http.Controller):
                     "data": [ 
                         {
                             'name': parking_transaction_id.barcode,
-                            'entry_datetime': parking_transaction_id.entry_datetime,
+                            'entry_datetime': parking_transaction_id.entry_datetime.strftime('%Y-%m-%d %H:%M:%D'),
                             'entry_booth_id': parking_transaction_id.entry_booth_id.name,
                             'entry_operator_id': parking_transaction_id.entry_operator_id.name
                         }
@@ -263,6 +263,15 @@ class ParkingController(http.Controller):
             data = {
                 "err": True,
                 "message": "Parking Transaction not found",
+                "data": [ 
+                ]
+            }
+            return valid_response(data)
+
+        if parking_transaction_id.state != 'exit':
+            data = {
+                "err": True,
+                "message": "Parking Transaction invalid",
                 "data": [ 
                 ]
             }
