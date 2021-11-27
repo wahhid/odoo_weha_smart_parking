@@ -537,7 +537,6 @@ class ParkingTransaction(models.Model):
         self.env.cr.execute(sql_req)
 
     def calculate_duration(self):
-        trans = self
         
         years = 0
         month = 0
@@ -546,9 +545,10 @@ class ParkingTransaction(models.Model):
         minutes = 0
         seconds = 0
 
-        exit_datetime = trans.exit_datetime
-        entry_datetime = trans.entry_datetime
-        diff = exit_datetime - entry_datetime
+        #exit_datetime = self.exit_datetime
+        #ntry_datetime = self.entry_datetime
+        #diff = exit_datetime - entry_datetime
+        diff = self.exit_datetime - self.entry_datetime
         minutesandseconds = divmod(diff.days * 86400 + diff.seconds, 60)
         
         hours = minutesandseconds[0] / 60
@@ -559,7 +559,7 @@ class ParkingTransaction(models.Model):
         values.update({'hours': int(hours)})
         values.update({'minutes': int(minutes)})
         values.update({'seconds': int(seconds)})
-        trans.write(values)
+        self.write(values)
 
     def calculate_general_charge(self):
         trans = self
