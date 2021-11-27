@@ -97,7 +97,7 @@ class ParkingMembership(models.Model):
                     break
         return status
 
-    def get_expire_date(self):
+    def get_expired_date(self):
         for row in self:
             payments = row.mapped('membership_payment_ids').sorted('end_date',reverse=True)
             row.expired_date = payments[0].end_date
