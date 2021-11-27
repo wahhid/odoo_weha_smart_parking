@@ -16,6 +16,7 @@ AVAILABLE_STATES = [
     ('open','Open'),    
     ('done','Closed'),
     ('posted','Posted'),
+    ('cancel', 'Cancelled'),
 ]
 
 
