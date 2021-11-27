@@ -101,7 +101,10 @@ class ParkingMembership(models.Model):
         for row in self:
             if len(row.membership_payment_ids) > 0:
                 payments = row.mapped('membership_payment_ids').filtered(lambda o : o.payment_state == 'paid').sorted('end_date',reverse=True)
-                row.expire_date = payments[0].end_date
+                if len(payments) > 0:
+                    row.expire_date = payments[0].end_date
+                else:
+                    row.expire_date = False
 
     def print_receipt(self):
         pass
