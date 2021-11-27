@@ -548,6 +548,8 @@ class ParkingTransaction(models.Model):
         #exit_datetime = self.exit_datetime
         #ntry_datetime = self.entry_datetime
         #diff = exit_datetime - entry_datetime
+        _logger.info(self.exit_datetime)
+        _logger.info(self.entry_datetime)
         diff = self.exit_datetime - self.entry_datetime
         minutesandseconds = divmod(diff.days * 86400 + diff.seconds, 60)
         

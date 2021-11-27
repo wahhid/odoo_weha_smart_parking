@@ -247,8 +247,8 @@ class ParkingController(http.Controller):
                 'barcode': parking_transaction_id.barcode,
                 'plat_number': parking_transaction_id.plat_number,
                 'input_method': parking_transaction_id.input_method,
-                'entry_datetime': parking_transaction_id.entry_datetime,
-                'exit_datetime': parking_transaction_id.entry_datetime
+                'entry_datetime': parking_transaction_id.entry_datetime.strftime('%Y-%m-%d %H:%M:%S'),
+                'exit_datetime': parking_transaction_id.exit_datetime.strftime('%Y-%m-%d %H:%M:%S')
             },
         }
         return valid_response(data)
