@@ -107,7 +107,7 @@ class ParkingMembership(models.Model):
     card_number = fields.Char('Card Number', size=20)
     product_id = fields.Many2one('product.product', 'Product')
     membership_payment_ids = fields.One2many('parking.membership.payment', 'parking_membership_id', 'Payments')
-    state = fields.Selection(AVAILABLE_STATES, 'Status', readonly=True, default='draft')
+    state = fields.Selection(AVAILABLE_MEMBER_STATE, 'Status', readonly=True, default='draft')
 
     @api.model
     def create(self, values):
@@ -182,7 +182,7 @@ class ParkingMembershipPayment(models.Model):
     end_date = fields.Date('End Date', readonly=True, default=date.today() + relativedelta(months=1))
     total_amount = fields.Float('Total Payment', readonly=True)
     invoice_id = fields.Many2one('account.move', 'Invoice', readonly=True)
-    state = fields.Selection(AVAILABLE_MEMBER_STATE, 'State', compute='get_state', readonly=True)
+    state = fields.Selection(AVAILABLE_STATES, 'State', compute='get_state', readonly=True)
 
 
     @api.model
