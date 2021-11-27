@@ -100,7 +100,7 @@ class ParkingMembership(models.Model):
     def get_expired_date(self):
         for row in self:
             if len(row.membership_payment_ids) > 0:
-                payments = row.filtered(lambda o : o.payment_state == 'paid').mapped('membership_payment_ids').sorted('end_date',reverse=True)
+                payments = row.mapped('membership_payment_ids').filtered(lambda o : o.payment_state == 'paid').sorted('end_date',reverse=True)
                 row.expire_date = payments[0].end_date
 
     def print_receipt(self):
