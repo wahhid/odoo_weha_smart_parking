@@ -115,6 +115,7 @@ class ParkingMembership(models.Model):
 
 class ParkingMembershipPayment(models.Model):
     _name = "parking.membership.payment"
+    _rec_name = 'parking_membership_id'
 
     def trans_create_invoice(self):
         partner_id = self.parking_membership_id.res_partner_id
