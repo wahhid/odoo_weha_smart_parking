@@ -147,7 +147,10 @@ class ParkingMembershipPayment(models.Model):
     def get_state(self):
         str_now = date.today()
         if self.end_date > str_now:
-            self.state = self.invoice_id.state
+            if self.invoice_id:
+                self.state = self.invoice_id.state
+            else:
+                self.state = 'draft'
         else:
             self. state = 'done'
 
