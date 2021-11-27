@@ -230,7 +230,8 @@ class ParkingTransactionSession(models.Model):
 class ParkingTransaction(models.Model):
     _name = "parking.transaction"
     _inherit = ['mail.thread']
-    _description = "Parking Transaction Session"
+    _description = "Parking Transaction"
+    _rec_name = 'trans_id'
 
     def trans_close(self):
         super(ParkingTransaction, self).write({'state': 'done'})
