@@ -74,7 +74,7 @@
 	                    <notebook>
 	                    	<page sting="Payment">	                    		
 	                    		<field name="membership_payment_ids">
-	                    			<tree order="end_date">
+	                    			<tree default_order="end_date desc">
 	                    				<field name="trans_date"/>
 	                    				<field name="start_date"/>
 	                    				<field name="end_date"/>
