@@ -74,11 +74,13 @@
 	                    <notebook>
 	                    	<page sting="Payment">	                    		
 	                    		<field name="membership_payment_ids">
-	                    			<tree>
+	                    			<tree order="end_date">
 	                    				<field name="trans_date"/>
 	                    				<field name="start_date"/>
 	                    				<field name="end_date"/>
 	                    				<field name="total_amount"/>
+                                        <field name="invoice_id"/>
+                                        <field name="payment_state"/>
 	                    			</tree>
 	                    		</field>
 	                    	</page>
