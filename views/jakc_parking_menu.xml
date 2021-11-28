@@ -1,19 +1,20 @@
 <openerp>
     <data>
         <menuitem name="Parking" id="parking_main_menu" web_icon="weha_smart_parking,static/description/icon.png"/>			
-		<menuitem name="General" id="base.parking_general_menu" parent="parking_main_menu"/>
 		<menuitem name="Master" id="base.parking_master_menu" parent="parking_main_menu"/>			     		       
         <menuitem name="Transaction" id="base.parking_transaction_menu" parent="parking_main_menu"/>	        
         <menuitem name="Membership" id="base.parking_membership_menu" parent="parking_main_menu"/>	
         <menuitem name="Event" id="base.parking_event_menu" parent="parking_main_menu"/>
         <menuitem name="Voucher" id="base.parking_voucher_menu" parent="parking_main_menu"/>
         <menuitem name="Report" id="base.parking_report_menu" parent="parking_main_menu"/>	
+        <menuitem name="Configuration" id="base.parking_configuration_menu" parent="parking_main_menu"/>
+
                        	               	               
         <!-- PARKING/MENU -->
         <!-- GENERAL -->    	       
-        <menuitem id="parking_vehicle_menu" name="Vehicle Type" parent="base.parking_general_menu"  action="action_parking_vehicle_type" groups="group_parking_officer,group_parking_manager,group_parking_admin" sequence="1"/>
-        <menuitem id="parking_shift_menu" name="Shift" parent="base.parking_general_menu"  action="action_parking_shift" groups="group_parking_officer,group_parking_manager,group_parking_admin" sequence="2"/>
-        <menuitem id="parking_payment_method_menu" name="Payment Method" parent="base.parking_general_menu"  action="action_parking_payment_method" groups="group_parking_officer,group_parking_manager,group_parking_admin" sequence="3"/>
+        <menuitem id="parking_vehicle_menu" name="Vehicle Type" parent="base.parking_configuration_menu"  action="action_parking_vehicle_type" groups="group_parking_officer,group_parking_manager,group_parking_admin" sequence="1"/>
+        <menuitem id="parking_shift_menu" name="Shift" parent="base.parking_configuration_menu"  action="action_parking_shift" groups="group_parking_officer,group_parking_manager,group_parking_admin" sequence="2"/>
+        <menuitem id="parking_payment_method_menu" name="Payment Method" parent="base.parking_configuration_menu"  action="action_parking_payment_method" groups="group_parking_officer,group_parking_manager,group_parking_admin" sequence="3"/>
 
         <!-- MASTER -->
         <menuitem id="parking_booth_menu" name="Booth" parent="base.parking_master_menu"  action="action_parking_booth" groups="group_parking_officer,group_parking_manager,group_parking_admin" sequence="1"/>
