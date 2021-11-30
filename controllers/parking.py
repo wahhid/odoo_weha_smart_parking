@@ -92,6 +92,7 @@ class ParkingController(http.Controller):
         }
 
         parking_session_id = http.request.env['parking.transaction.session'].create(vals)
+        
         if not parking_session_id:
             data = {
                 "err": True,

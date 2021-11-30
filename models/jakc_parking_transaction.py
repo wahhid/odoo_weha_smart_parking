@@ -58,14 +58,12 @@ class ParkingTransactionSession(models.Model):
     _description = "Parking Transaction Session"
 
     def trans_close(self):
-        session = self
-        parking_transaction_ids = session.parking_transaction_ids
-        for line in parking_transaction_ids:
-            line.write({'state':'done'})
-        values = {}
-        values.update({'state': 'done'})
-        self.write(values)
-        
+        for session in self:
+            parking_transaction_ids = session.parking_transaction_ids
+            for line in parking_transaction_ids:
+                line.write({'state':'done'})
+            session.write({'state': 'done'})
+            
     def trans_posted(self):
         pass
 
