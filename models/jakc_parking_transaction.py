@@ -62,7 +62,8 @@ class ParkingTransactionSession(models.Model):
             parking_transaction_ids = session.parking_transaction_ids
             for line in parking_transaction_ids:
                 line.write({'state':'done'})
-            session.write({'state': 'done'})
+            super(ParkingTransactionSession, self).write({'state': 'done'})
+            #session.write({'state': 'done'})
             
     def trans_posted(self):
         pass
